@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="./stylesheet.css">
+    <script src="https://kit.fontawesome.com/ca0b4148d3.js" crossorigin="anonymous"></script>
+</head>
+<body>
+   <div class="container">
+    <div class="form-box">
+        <h1>Calculator</h1>
+        <form id="calculatorForm">
+            <div class="input-group">
+                <div class="num-1">
+                    <i class="fa-solid fa-forward fa-fade" style="color: #000000;"></i>
+                    <input id="num1" type="number" placeholder="Enter Number">
+                </div>
+                  <div class="num-2">
+                    <i class="fa-solid fa-forward fa-fade" style="color: #000000;"></i>
+                    <input id="num2" type="number" placeholder="Enter Number">
+                  </div>
+                  <div class="button-container">
+                    <button type="button" class="operator-button" onclick="setOperator('+')">+</button>
+                    <button type="button" class="operator-button" onclick="setOperator('-')">-</button>
+                    <button type="button" class="operator-button" onclick="setOperator('*')">&times;</button>
+                    <button type="button" class="operator-button" onclick="setOperator('/')">/</button>
+                </div>
+                
+                    <div class="btn-field">
+                <button type="button" onclick="calculate()">Calculate</button>
+
+                </div>
+                <div class="result-container">
+                    <input id="result" type="text" placeholder="Result">
+                </div>
+            </div>
+          
+               
+            </div>
+        </form>
+    </div>
+   </div> 
+
+   <script>
+        let operator = null;
+
+        function setOperator(newOperator) {
+            operator = newOperator;
+        }
+
+        function calculate() {
+            const num1 = Number(document.getElementById('num1').value);
+            const num2 = Number(document.getElementById('num2').value);
+            const resultField = document.getElementById('result');
+
+            if (!isNaN(num1) && !isNaN(num2) && operator !== null) {
+                let result;
+
+                switch (operator) {
+                    case '+':
+                        result = num1 + num2;
+                        break;
+                    case '-':
+                        result = num1 - num2;
+                        break;
+                    case '*':
+                        result = num1 * num2;
+                        break;
+                    case '/':
+                        result = num1 / num2;
+                        break;
+                    default:
+                        result = 'Invalid operator';
+                }
+
+                console.log(`Result: ${result}, Num1: ${num1}, Num2: ${num2}, Operator: ${operator}`);
+                resultField.value = result;
+            } else {
+                resultField.value = 'Invalid input or operator';
+            }
+        }
+    </script>
+</body>
+</html>
